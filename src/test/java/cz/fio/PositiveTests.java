@@ -21,7 +21,6 @@ public class PositiveTests extends TestBase {
     }
 
 
-
     @Test
     public void testParallelRequests() {
         ForkJoinPool.commonPool().submit(() ->

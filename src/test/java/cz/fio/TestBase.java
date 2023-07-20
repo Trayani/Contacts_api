@@ -22,12 +22,10 @@ import static org.springframework.http.RequestEntity.post;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 abstract class TestBase {
-
     @LocalServerPort
     int randomServerPort;
     @Autowired
     private MockMvc mockMvc;
-
     @Autowired
     protected ContactsApiConfig config;
     protected ObjectMapper objectMapper = new ObjectMapper();
@@ -91,27 +89,5 @@ abstract class TestBase {
         }
 
         assertTrue(assertOkStatus == (responseStatus == 200 || responseStatus == 201));
-    }
-
-    protected void testContactStore(String firstName,
-                                    String lastName,
-                                    String email,
-                                    int expectedStatus,
-                                    StorageResultType storageResultType
-    ) {
-        int responseStatus;
-        ContactStorageResult responseBody;
-
-        try {
-            var uri = getRequestUri(firstName, lastName, email);
-            var response = mockMvc.perform(MockMvcRequestBuilders.post(uri)).andReturn().getResponse();
-            responseStatus = response.getStatus();
-            responseBody = objectMapper.readValue(response.getContentAsString(), ContactStorageResult.class);
-        } catch (Throwable e) {
-            throw new AssertionError("POST request to contacts API failed", e);
-        }
-
-        assertEquals(expectedStatus, responseStatus);
-        assertEquals(storageResultType, responseBody.type());
     }
 }

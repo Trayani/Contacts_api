@@ -31,12 +31,14 @@ public class StoreContactService {
         return findOrStoreContact(contactCsvRow);
     }
 
+
     /** Finds existing contacts record or stores a new one if it already exists
      * @param contactCsvRow a full contact record in CSV-line format
      * */
     public ContactStorageResult findOrStoreContact(String contactCsvRow) {
         return findOrStoreContact(contactCsvRow, true);
     }
+
 
     /** Finds existing contacts record or stores a new one if it already exists
      * @param contactCsvRow a full contact record in CSV-line format
@@ -68,6 +70,7 @@ public class StoreContactService {
 
     }
 
+
     /** Creates a new contacts CSV file amd proceeds to store new record to it
      * @param contactCsvRow a full contact record in CSV-line format
      * */
@@ -81,6 +84,7 @@ public class StoreContactService {
         }
         throw new IOException("Could not create contacts file");
     }
+
 
     /** Scans the contacts file. If not found, record will be stored
      * @param contactCsvRow a full contact record in CSV-line format
@@ -100,12 +104,14 @@ public class StoreContactService {
         return storeNewContact(contactCsvRow, file);
     }
 
+
     /** Evaluates contact line match. Con be configured for case-insensitive match     */
     private boolean compareContactLine(String exstingRecordLine, String lookupCsvLine) {
         if (config.isCaseInsensitiveContactMatch())
             return exstingRecordLine.equalsIgnoreCase(lookupCsvLine);
         return exstingRecordLine.equals(lookupCsvLine);
     }
+
 
     /** Stores new record to the contacts file  */
     private ContactStorageResult storeNewContact(String expectedCsvRow, RandomAccessFile file) {
