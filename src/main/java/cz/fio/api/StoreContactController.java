@@ -67,7 +67,7 @@ public class StoreContactController {
     /** Upper-cases the first letters of the input while lower-cases the rest  */
     private String formatName(String input) {
         if (!input.contains(" "))
-            return StringUtils.capitalize(input);
+            return StringUtils.capitalize(input.toLowerCase());
 
         String[] nameSegments = multiSpaceRegex.split(input.toLowerCase().trim());
         return Arrays
