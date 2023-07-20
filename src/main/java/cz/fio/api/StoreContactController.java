@@ -69,7 +69,7 @@ public class StoreContactController {
         if (!input.contains(" "))
             return StringUtils.capitalize(input);
 
-        var nameSegments = multiSpaceRegex.split(input.toLowerCase().trim());
+        String[] nameSegments = multiSpaceRegex.split(input.toLowerCase().trim());
         return Arrays
                 .stream(nameSegments)
                 .map(StringUtils::capitalize)
