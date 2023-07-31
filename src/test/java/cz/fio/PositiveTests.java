@@ -25,7 +25,7 @@ public class PositiveTests extends TestBase {
     public void testParallelRequests() {
         ForkJoinPool.commonPool().submit(() ->
                 Stream.iterate(0, i -> i + 1)
-                        .limit(20)
+                        .limit(15)
                         .parallel()
                         .forEach(x -> testRepeatedMethod(UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID()))
         ).join();

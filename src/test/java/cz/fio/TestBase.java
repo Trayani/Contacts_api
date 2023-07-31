@@ -75,6 +75,7 @@ abstract class TestBase {
         assertEquals(expectedStatus, responseStatus);
     }
 
+
     protected void testContactStore(String firstName,
                                     String lastName,
                                     String email,
